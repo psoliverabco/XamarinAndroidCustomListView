@@ -58,10 +58,13 @@
   <ItemGroup>
     <None Include="Resources\AboutResources.txt" />
     <None Include="Assets\AboutAssets.txt" />
-    <AndroidResource Include="Resources\layout\custom_row.axml">
+    <AndroidResource Include="Resources\layout\CustomRow.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
     <AndroidResource Include="Resources\drawable\button_selector.axml">
+      <SubType>AndroidResource</SubType>
+    </AndroidResource>
+    <AndroidResource Include="Resources\layout\AddServiceDialog.axml">
       <SubType>AndroidResource</SubType>
     </AndroidResource>
   </ItemGroup>

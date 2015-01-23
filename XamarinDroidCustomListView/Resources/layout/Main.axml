@@ -4,9 +4,11 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent">
     <ListView
-        android:id="@+id/service_list"
-        android:dividerHeight="8dp"
-        android:textFilterEnabled="true" />
+        android:minWidth="25px"
+        android:minHeight="25px"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/service_list" />
     <TextView
         android:id="@+id/service_list_empty"
         android:layout_height="match_parent"
@@ -16,6 +18,5 @@
         android:textStyle="italic"
         android:textSize="50sp"
         android:textColor="@android:color/darker_gray"
-        android:text="@string/no_services"
-        android:fontFamily="sans-serif-condensed" />
+        android:text="@string/no_services" />
 </LinearLayout>

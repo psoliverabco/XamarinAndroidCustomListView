@@ -18,6 +18,12 @@ namespace XamarinDroidCustomListView
         protected Activity Context = null;
         protected List<ServiceItem> ServiceItems;
 
+        public ServiceItemsAdapter(Activity context, IEnumerable<ServiceItem> services )
+        {
+            this.Context = context;
+            this.ServiceItems = services.ToList();
+        }
+
 
         public override long GetItemId(int position)
         {
@@ -26,7 +32,11 @@ namespace XamarinDroidCustomListView
 
         public override int Count
         {
-            get { return ServiceItems.Count; }
+            get
+            {
+                var result = ServiceItems.Count;
+                return result > 0 ? result : 1;
+            }
         }
 
         public override ServiceItem this[int position]
@@ -40,15 +50,12 @@ namespace XamarinDroidCustomListView
             ServiceViewHolder holder = null;
             var view = convertView;
 
-            if (view != null)
+            if (view == null)
             {
-                holder = view.Tag as ServiceViewHolder;
-            }
+                //holder = new ServiceViewHolder();
+                view = Context.LayoutInflater.Inflate(Resource.Layout.CustomRow, null);
 
-            if (holder == null)
-            {
                 holder = new ServiceViewHolder();
-                view = Context.LayoutInflater.Inflate(Resource.Layout.custom_row, null);
                 holder.Name = view.FindViewById<TextView>(Resource.Id.tvServiceName);
                 holder.Price = view.FindViewById<TextView>(Resource.Id.tvServicePrice);
                 holder.Category = view.FindViewById<TextView>(Resource.Id.tvServiceCategory);
@@ -56,20 +63,20 @@ namespace XamarinDroidCustomListView
                 holder.DeleteButton = view.FindViewById<ImageButton>(Resource.Id.buttonDeleteService);
                 view.Tag = holder;
             }
+            else
+            {
+                    holder = view.Tag as ServiceViewHolder;
+            }
 
             //Now the holder holds reference to our view objects, whether they are 
             //recycled or created new. 
             //Next we need to populate the views
 
             var tempServiceItem = ServiceItems[position];
-            holder.Name = (TextView) tempServiceItem.Name;
-            holder.Category = (TextView) tempServiceItem.Category;
-            holder.Price = (TextView)String.Format("{0:C}", tempServiceItem.Price);
-            return null;
-        
-             
-
-            
+            holder.Name.Text = tempServiceItem.Name;
+            holder.Category.Text = tempServiceItem.Category;
+            holder.Price.Text = String.Format("{0:C}", tempServiceItem.Price);
+            return view;
         }
 
 
@@ -81,6 +88,12 @@ namespace XamarinDroidCustomListView
             public TextView Category { get; set; }
             public ImageButton EditButton { get; set; }
             public ImageButton DeleteButton { get; set; }
+        }
+
+        public void Add(ServiceItem service)
+        {
+            ServiceItems.Add(service);
+            this.NotifyDataSetChanged();
         }
     }
 }

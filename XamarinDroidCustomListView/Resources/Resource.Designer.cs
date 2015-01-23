@@ -64,22 +64,28 @@ namespace XamarinDroidCustomListView
 		{
 			
 			// aapt resource value: 0x7f050005
-			public const int MyButton = 2131034117;
+			public const int buttonDeleteService = 2131034117;
 			
 			// aapt resource value: 0x7f050004
-			public const int buttonDeleteService = 2131034116;
-			
-			// aapt resource value: 0x7f050003
-			public const int buttonEditService = 2131034115;
+			public const int buttonEditService = 2131034116;
 			
 			// aapt resource value: 0x7f050001
-			public const int tvServiceCategory = 2131034113;
+			public const int linearLayout1 = 2131034113;
+			
+			// aapt resource value: 0x7f050006
+			public const int service_list = 2131034118;
+			
+			// aapt resource value: 0x7f050007
+			public const int service_list_empty = 2131034119;
+			
+			// aapt resource value: 0x7f050002
+			public const int tvServiceCategory = 2131034114;
 			
 			// aapt resource value: 0x7f050000
 			public const int tvServiceName = 2131034112;
 			
-			// aapt resource value: 0x7f050002
-			public const int tvServicePrice = 2131034114;
+			// aapt resource value: 0x7f050003
+			public const int tvServicePrice = 2131034115;
 			
 			static Id()
 			{
@@ -95,10 +101,13 @@ namespace XamarinDroidCustomListView
 		{
 			
 			// aapt resource value: 0x7f030000
-			public const int custom_row = 2130903040;
+			public const int AddServiceDialog = 2130903040;
 			
 			// aapt resource value: 0x7f030001
-			public const int Main = 2130903041;
+			public const int CustomRow = 2130903041;
+			
+			// aapt resource value: 0x7f030002
+			public const int Main = 2130903042;
 			
 			static Layout()
 			{
@@ -118,6 +127,9 @@ namespace XamarinDroidCustomListView
 			
 			// aapt resource value: 0x7f040000
 			public const int Hello = 2130968576;
+			
+			// aapt resource value: 0x7f040002
+			public const int no_services = 2130968578;
 			
 			static String()
 			{
