@@ -9,10 +9,11 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using StylistClients.BusinessLayer.Contracts;
 
 namespace XamarinDroidCustomListView
 {
-    public class ServiceItem 
+    public class ServiceItem : IBusinessEntity
     {
         public int Id { get; set; }
         public string Name { get; set; }

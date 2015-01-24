@@ -20,7 +20,7 @@ namespace XamarinDroidCustomListView
         static readonly object Locker = new object();
 
         /// <summary>
-        /// Initialize a new instance of the ClientDatabase
+        /// Initialize a new instance of the ServiceDatabase
         /// </summary>
         /// <param name="path"></param>
         public ServicesDatabase(string path) : base(path)
