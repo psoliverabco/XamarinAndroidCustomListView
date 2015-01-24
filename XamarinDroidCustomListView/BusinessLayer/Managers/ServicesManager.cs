@@ -10,6 +10,7 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Widget;
+using XamarinDroidCustomListView.DataAccess;
 
 namespace XamarinDroidCustomListView.BusinessLayer.Managers
 {
@@ -22,12 +23,12 @@ namespace XamarinDroidCustomListView.BusinessLayer.Managers
 
         public static ServiceItem GetServiceItem(int id)
         {
-            return ServicesRepository.GetClient(id);
+            return ServicesRepository.GetServiceItem(id);
         }
 
         public static IList<ServiceItem> GetServiceItems()
         {
-            return new List<ServiceItem>(ServicesRepository.GetClients());
+            return new List<ServiceItem>(ServicesRepository.GetServiceItems());
         }
 
         public static int SaveServiceItem(ServiceItem item)

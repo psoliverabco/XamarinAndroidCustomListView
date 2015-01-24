@@ -7,6 +7,7 @@ using Android.Util;
 using Android.Views;
 using Android.Widget;
 using Android.OS;
+using XamarinDroidCustomListView.BusinessLayer.Managers;
 
 
 namespace XamarinDroidCustomListView
@@ -17,6 +18,7 @@ namespace XamarinDroidCustomListView
         protected ListView MyServiceListView;
         protected List<ServiceItem> MyServiceItems;
         protected ServiceItemsAdapter MyServiceItemsAdapter;
+        public static readonly string Tag = typeof (MainActivity).ToString();
         
 
         protected override void OnCreate(Bundle bundle)
@@ -29,7 +31,7 @@ namespace XamarinDroidCustomListView
             MyServiceListView = FindViewById<ListView>(Resource.Id.service_list);
 
             //Create an empty list of Service List
-            MyServiceItems = new List<ServiceItem>();
+            MyServiceItems = (List<ServiceItem>) ServicesManager.GetServiceItems();
             MyServiceItemsAdapter = new ServiceItemsAdapter(this, MyServiceItems);
 
             MyServiceListView.Adapter = MyServiceItemsAdapter;
@@ -41,7 +43,7 @@ namespace XamarinDroidCustomListView
         protected override void OnResume()
         {
             base.OnResume();
-            LoadData();
+           // LoadData();
         }
 
         private void LoadData()
@@ -58,7 +60,10 @@ namespace XamarinDroidCustomListView
                 Category = "Domestic"
                 
             };
-            MyServiceItemsAdapter.Add(service1);
+            //MyServiceItemsAdapter.Add(service1);
+           var result = ServicesManager.SaveServiceItem(service1);
+            Log.Info(Tag," First insert " + result);
+
 
             var service2 = new ServiceItem
             {
@@ -68,7 +73,9 @@ namespace XamarinDroidCustomListView
                 Category = "Labor"
 
             };
-           MyServiceItemsAdapter.Add(service2);
+           //MyServiceItemsAdapter.Add(service2);
+           var result2 = ServicesManager.SaveServiceItem(service2);
+           Log.Info(Tag, " First insert " + result2);
         }
     }
 

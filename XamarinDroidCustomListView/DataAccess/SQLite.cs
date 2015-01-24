@@ -23,15 +23,6 @@
 #define USE_CSHARP_SQLITE
 #endif
 
-using System;
-using System.Diagnostics;
-using System.Runtime.InteropServices;
-using System.Collections.Generic;
-using System.Reflection;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Threading;
-
 #if USE_CSHARP_SQLITE
 using Sqlite3 = Community.CsharpSqlite.Sqlite3;
 using Sqlite3DatabaseHandle = Community.CsharpSqlite.Sqlite3.sqlite3;
@@ -41,11 +32,17 @@ using Sqlite3 = Sqlite.Sqlite3;
 using Sqlite3DatabaseHandle = Sqlite.Database;
 using Sqlite3Statement = Sqlite.Statement;
 #else
-using Sqlite3DatabaseHandle = System.IntPtr;
-using Sqlite3Statement = System.IntPtr;
 #endif
+using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
+using System.Linq.Expressions;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using System.Threading;
 
-namespace SQLite
+namespace XamarinDroidCustomListView.DataAccess
 {
 	public class SQLiteException : Exception
 	{
@@ -135,8 +132,8 @@ namespace SQLite
 		private int _transactionDepth = 0;
 		private Random _rand = new Random ();
 
-		public Sqlite3DatabaseHandle Handle { get; private set; }
-		internal static readonly Sqlite3DatabaseHandle NullHandle = default(Sqlite3DatabaseHandle);
+		public IntPtr Handle { get; private set; }
+		internal static readonly IntPtr NullHandle = default(IntPtr);
 
 		public string DatabasePath { get; private set; }
 
@@ -186,7 +183,7 @@ namespace SQLite
 			SQLite3.SetDirectory(/*temp directory type*/2, Windows.Storage.ApplicationData.Current.TemporaryFolder.Path);
 #endif
 
-			Sqlite3DatabaseHandle handle;
+			IntPtr handle;
 
 #if SILVERLIGHT || USE_CSHARP_SQLITE
             var r = SQLite3.Open (databasePath, out handle, (int)openFlags, IntPtr.Zero);
@@ -2127,19 +2124,19 @@ namespace SQLite
 			return string.Join (Environment.NewLine, parts);
 		}
 
-		Sqlite3Statement Prepare()
+		IntPtr Prepare()
 		{
 			var stmt = SQLite3.Prepare2 (_conn.Handle, CommandText);
 			BindAll (stmt);
 			return stmt;
 		}
 
-		void Finalize (Sqlite3Statement stmt)
+		void Finalize (IntPtr stmt)
 		{
 			SQLite3.Finalize (stmt);
 		}
 
-		void BindAll (Sqlite3Statement stmt)
+		void BindAll (IntPtr stmt)
 		{
 			int nextIdx = 1;
 			foreach (var b in _bindings) {
@@ -2155,7 +2152,7 @@ namespace SQLite
 
 		internal static IntPtr NegativePointer = new IntPtr (-1);
 
-		internal static void BindParameter (Sqlite3Statement stmt, int index, object value, bool storeDateTimeAsTicks)
+		internal static void BindParameter (IntPtr stmt, int index, object value, bool storeDateTimeAsTicks)
 		{
 			if (value == null) {
 				SQLite3.BindNull (stmt, index);
@@ -2208,7 +2205,7 @@ namespace SQLite
 			public int Index { get; set; }
 		}
 
-		object ReadCol (Sqlite3Statement stmt, int index, SQLite3.ColType type, Type clrType)
+		object ReadCol (IntPtr stmt, int index, SQLite3.ColType type, Type clrType)
 		{
 			if (type == SQLite3.ColType.Null) {
 				return null;
@@ -2278,8 +2275,8 @@ namespace SQLite
 
 		public string CommandText { get; set; }
 
-		protected Sqlite3Statement Statement { get; set; }
-		internal static readonly Sqlite3Statement NullStatement = default(Sqlite3Statement);
+		protected IntPtr Statement { get; set; }
+		internal static readonly IntPtr NullStatement = default(IntPtr);
 
 		internal PreparedSqlLiteInsertCommand (SQLiteConnection conn)
 		{
@@ -2324,7 +2321,7 @@ namespace SQLite
 			}
 		}
 
-		protected virtual Sqlite3Statement Prepare ()
+		protected virtual IntPtr Prepare ()
 		{
 			var stmt = SQLite3.Prepare2 (Connection.Handle, CommandText);
 			return stmt;

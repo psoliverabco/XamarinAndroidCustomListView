@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 
-namespace XamarinDroidCustomListView
+namespace XamarinDroidCustomListView.DataAccess
 {
 	public class ServicesRepository
 	{
@@ -19,6 +19,9 @@ namespace XamarinDroidCustomListView
 		{
 			//set the db location;
 			DbLocation = DatabaseFilePath;
+
+			//instantiate the database
+			_db = new ServicesDatabase(DbLocation);
 		}
 
 
@@ -36,12 +39,12 @@ namespace XamarinDroidCustomListView
 
 		// CRUD (Create, Read, Update and Delete) methods
 
-		public static ServiceItem GetClient(int id)
+		public static ServiceItem GetServiceItem(int id)
 		{
 			return Me._db.GetItem<ServiceItem>(id);
 		}
 
-		public static IEnumerable<ServiceItem> GetClients()
+		public static IEnumerable<ServiceItem> GetServiceItems()
 		{
 			return Me._db.GetItems<ServiceItem>();
 		}

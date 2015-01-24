@@ -1,4 +1,4 @@
-using SQLite;
+using XamarinDroidCustomListView.DataAccess;
 
 namespace XamarinDroidCustomListView.BusinessLayer.Contracts
 {

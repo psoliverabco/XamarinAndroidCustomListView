@@ -34,8 +34,7 @@ namespace XamarinDroidCustomListView
         {
             get
             {
-                var result = ServiceItems.Count;
-                return result > 0 ? result : 1;
+                return ServiceItems.Count;
             }
         }
 
@@ -73,6 +72,7 @@ namespace XamarinDroidCustomListView
             //Next we need to populate the views
 
             var tempServiceItem = ServiceItems[position];
+            //var tempServiceItem = new ServiceItem();
             holder.Name.Text = tempServiceItem.Name;
             holder.Category.Text = tempServiceItem.Category;
             holder.Price.Text = String.Format("{0:C}", tempServiceItem.Price);

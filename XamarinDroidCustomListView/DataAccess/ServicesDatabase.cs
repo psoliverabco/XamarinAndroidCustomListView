@@ -1,18 +1,9 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using SQLite;
+using Android.Util;
 using XamarinDroidCustomListView.BusinessLayer.Contracts;
 
-namespace XamarinDroidCustomListView
+namespace XamarinDroidCustomListView.DataAccess
 {
     public class ServicesDatabase : SQLiteConnection
     {
@@ -27,6 +18,8 @@ namespace XamarinDroidCustomListView
         {
             //Create the tables
             CreateTable<ServiceItem>();
+            Log.Info(MainActivity.Tag, "Database Created");
+
         }
 
         //Get all items in the database method
@@ -66,6 +59,7 @@ namespace XamarinDroidCustomListView
             {
                 return Delete<T>(new T() {Id = id});
             }
+        }
 
     }
 }
