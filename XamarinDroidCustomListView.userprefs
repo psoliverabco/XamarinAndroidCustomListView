@@ -1,0 +1,14 @@
+﻿<Properties StartupItem="XamarinDroidCustomListView\XamarinDroidCustomListView.csproj">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Android.015d2ea4a5381e08" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="XamarinDroidCustomListView\ServicesRepository.cs">
+    <Files>
+      <File FileName="XamarinDroidCustomListView\MainActivity.cs" Line="54" Column="54" />
+      <File FileName="XamarinDroidCustomListView\ServicesRepository.cs" Line="1" Column="1" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.ItemProperties.XamarinDroidCustomListView MonoForAntroid.PreferredDevice="Nexus 4" />
+</Properties>
