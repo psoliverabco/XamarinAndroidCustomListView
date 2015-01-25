@@ -60,6 +60,7 @@ namespace XamarinDroidCustomListView
                 holder.Category = view.FindViewById<TextView>(Resource.Id.tvServiceCategory);
                 holder.EditButton = view.FindViewById<ImageButton>(Resource.Id.buttonEditService);
                 holder.DeleteButton = view.FindViewById<ImageButton>(Resource.Id.buttonDeleteService);
+
                 view.Tag = holder;
             }
             else
@@ -76,8 +77,19 @@ namespace XamarinDroidCustomListView
             holder.Name.Text = tempServiceItem.Name;
             holder.Category.Text = tempServiceItem.Category;
             holder.Price.Text = String.Format("{0:C}", tempServiceItem.Price);
+
+            holder.DeleteButton.Click += (object sender, EventArgs e) => {
+                ServiceItems.RemoveAt(position);
+                NotifyDataSetChanged();
+                };
+            holder.EditButton.Click += (object sender, EventArgs e) =>
+            {
+               //Todo - implement edit Service
+            };
+
             return view;
         }
+
 
 
 
